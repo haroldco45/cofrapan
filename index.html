@@ -6,10 +6,9 @@
     <title>Cofrapan - Tu Panadería en Casa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* --- ESTILOS CSS --- */
         :root {
-            --primary-color: #f7b731; /* Un color dorado/pan */
-            --secondary-color: #a55eea; /* Un color complementario para "Vibras Positivas" */
+            --primary-color: #f7b731;
+            --secondary-color: #a55eea;
             --bg-color: #fdfdfd;
             --text-color: #333;
             --border-color: #ddd;
@@ -20,61 +19,45 @@
             margin: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
-            scroll-behavior: smooth;
         }
 
-        /* Encabezado */
+        /* --- ENCABEZADO CENTRADO --- */
         header {
             background-color: #fff;
             padding: 20px;
             display: flex;
+            flex-direction: column; 
             align-items: center;
-            justify-content: space-between;
+            text-align: center;
             border-bottom: 2px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
 
-        header img {
-            max-height: 80px;
-            width: auto;
+        header img.logo {
+            max-height: 100px;
+            margin-bottom: 10px;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-            color: var(--primary-color);
+        header .contacto-header {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
         }
 
         header .catalogo-link {
             text-decoration: none;
             color: var(--secondary-color);
             font-weight: bold;
-            display: flex;
-            align-items: center;
+            font-size: 0.9rem;
         }
 
-        header .catalogo-link img {
-            height: 20px;
-            margin-right: 5px;
-        }
-
-        /* Secciones Principales */
+        /* --- PRODUCTOS --- */
         section {
-            padding: 60px 20px;
+            padding: 40px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        h2 {
-            text-align: center;
-            color: var(--text-color);
-            margin-bottom: 40px;
-        }
-
-        /* Catálogo de Productos */
-        #catalogo .productos-grid {
+        .productos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
@@ -85,20 +68,13 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .producto-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
         .producto-imagen-container {
             width: 100%;
             height: 200px;
-            overflow: hidden;
+            background-color: #eee;
         }
 
         .producto-card img {
@@ -109,514 +85,258 @@
 
         .producto-info {
             padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .producto-info h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.3rem;
-        }
-
-        .producto-info p {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 15px;
-            min-height: 40px; /* Asegura un mínimo para la descripción */
         }
 
         .producto-precio {
             font-weight: bold;
             color: var(--primary-color);
             font-size: 1.2rem;
-            margin-bottom: 15px;
+            margin: 10px 0;
         }
 
-        /* Controles de Cantidad (+ / -) */
         .controles-cantidad {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            gap: 10px;
         }
 
         .btn-cantidad {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 8px 12px;
+            width: 30px;
+            height: 30px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .btn-cantidad:hover {
-            background-color: #e6a721;
         }
 
         .input-cantidad {
-            width: 50px;
+            width: 40px;
             text-align: center;
             border: 1px solid #ccc;
-            margin: 0 10px;
-            padding: 8px;
-            border-radius: 5px;
-            font-size: 1rem;
         }
 
-        /* Sección de Factura/Pedido */
+        /* --- FACTURA Y FORMULARIO --- */
         #factura {
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
             margin-top: 40px;
         }
 
-        .resumen-pedido {
-            border-top: 2px solid var(--border-color);
-            margin-bottom: 20px;
-            padding-top: 20px;
-        }
-
-        .item-pedido {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .totales {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-align: right;
-        }
-
-        /* Formulario del Cliente */
         #form-cliente {
             display: flex;
             flex-direction: column;
             gap: 15px;
+            margin-top: 20px;
         }
 
-        #form-cliente input, #form-cliente textarea {
-            padding: 12px;
+        input, textarea {
+            padding: 10px;
+            border-radius: 5px;
             border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 1rem;
         }
 
-        #form-cliente label {
-            font-weight: bold;
-            color: #555;
-        }
-
-        /* Botón GPS */
         .btn-gps {
             background-color: #4cd137;
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 10px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            border-radius: 5px;
         }
 
-        .btn-gps:hover {
-            background-color: #3cb02a;
-        }
-
-        /* Botón de Envío WhatsApp */
         .btn-whatsapp {
             background-color: #25d366;
             color: white;
+            padding: 15px;
+            text-align: center;
             text-decoration: none;
-            padding: 15px 25px;
+            display: block;
             border-radius: 30px;
             font-weight: bold;
-            font-size: 1.2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            width: fit-content;
-            margin: 30px auto;
+            margin-top: 20px;
         }
 
-        .btn-whatsapp:hover {
-            background-color: #1ebe5d;
-        }
-
-        /* Pie de página y contacto */
         footer {
-            background-color: #333;
-            color: #fff;
-            padding: 40px;
             text-align: center;
-            margin-top: auto;
-        }
-
-        footer h4 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
-
-        .contacto-info {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        .derechos {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        /* Control de Suscripción Invisible (solo para uso en JS) */
-        #suscripcion {
-            display: none;
-        }
-
-        /* Media Queries para Móviles */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            #factura {
-                padding: 20px;
-            }
+            padding: 40px;
+            background: #333;
+            color: white;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
-    <input type="hidden" id="suscripcion" name="suscripcion_activa" value="true">
-
     <header>
-        <img src="cofrapan1.png" alt="Logo de Cofrapan" title="Logo de Cofrapan">
-        <h1>COFRAPAN</h1>
+        <img src="cofrapan1.png" alt="Logo Cofrapan" class="logo">
+        <div class="contacto-header">
+            BOGOTA - WhatsApp: 3144778498
+        </div>
         <a href="cofrapan2.pdf" target="_blank" class="catalogo-link">
             <i class="far fa-file-pdf"></i> Ver Catálogo PDF
         </a>
     </header>
 
     <main>
-        <section id="catalogo">
-            <h2>Nuestra Variedad</h2>
+        <section>
+            <h2 style="text-align: center;">Nuestra Variedad</h2>
             <div class="productos-grid">
                 
-                <div class="producto-card" data-precio="5500" data-id="1">
+                <div class="producto-card" data-id="1" data-precio="5500">
                     <div class="producto-imagen-container">
-                        <img src="pandebocadillodequeso.jpg" alt="Pan de Bocadillo de Queso">
+                        <img src="pandebocadillodequeso.jpeg" alt="Pan de Bocadillo">
                     </div>
                     <div class="producto-info">
                         <h3>Pan de Bocadillo de Queso</h3>
-                        <p>Esponjoso pan dulce relleno con el mejor bocadillo y queso derretido.</p>
                         <p class="producto-precio">$5.500</p>
                         <div class="controles-cantidad">
-                            <button class="btn-cantidad disminiur" onclick="ajustarCantidad(1, -1)"><i class="fas fa-minus"></i></button>
-                            <input type="number" id="cantidad-1" value="0" min="0" class="input-cantidad" onchange="actualizarCantidadInput(1)">
-                            <button class="btn-cantidad aumentar" onclick="ajustarCantidad(1, 1)"><i class="fas fa-plus"></i></button>
+                            <button class="btn-cantidad" onclick="cambiarCant(1, -1)">-</button>
+                            <input type="number" id="cant-1" value="0" readonly class="input-cantidad">
+                            <button class="btn-cantidad" onclick="cambiarCant(1, 1)">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="producto-card" data-precio="6200" data-id="2">
+                <div class="producto-card" data-id="2" data-precio="6200">
                     <div class="producto-imagen-container">
-                        <img src="pandejamonyqueso.jpg" alt="Pan de Jamón y Queso">
+                        <img src="pandejamonyqueso.jpeg" alt="Pan de Jamón">
                     </div>
                     <div class="producto-info">
                         <h3>Pan de Jamón y Queso</h3>
-                        <p>Clásico y delicioso, perfecto para el desayuno o la merienda.</p>
                         <p class="producto-precio">$6.200</p>
                         <div class="controles-cantidad">
-                            <button class="btn-cantidad disminiur" onclick="ajustarCantidad(2, -1)"><i class="fas fa-minus"></i></button>
-                            <input type="number" id="cantidad-2" value="0" min="0" class="input-cantidad" onchange="actualizarCantidadInput(2)">
-                            <button class="btn-cantidad aumentar" onclick="ajustarCantidad(2, 1)"><i class="fas fa-plus"></i></button>
+                            <button class="btn-cantidad" onclick="cambiarCant(2, -1)">-</button>
+                            <input type="number" id="cant-2" value="0" readonly class="input-cantidad">
+                            <button class="btn-cantidad" onclick="cambiarCant(2, 1)">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="producto-card" data-precio="4800" data-id="3">
+                <div class="producto-card" data-id="3" data-precio="4800">
                     <div class="producto-imagen-container">
-                        <img src="pansuizorellenodecrema.jpg" alt="Pan Suizo Relleno de Crema">
+                        <img src="pansuizorellenodecrema.jpeg" alt="Pan Suizo">
                     </div>
                     <div class="producto-info">
                         <h3>Pan Suizo Relleno de Crema</h3>
-                        <p>Pan suave y hojaldrado relleno de nuestra crema pastelera especial.</p>
                         <p class="producto-precio">$4.800</p>
                         <div class="controles-cantidad">
-                            <button class="btn-cantidad disminiur" onclick="ajustarCantidad(3, -1)"><i class="fas fa-minus"></i></button>
-                            <input type="number" id="cantidad-3" value="0" min="0" class="input-cantidad" onchange="actualizarCantidadInput(3)">
-                            <button class="btn-cantidad aumentar" onclick="ajustarCantidad(3, 1)"><i class="fas fa-plus"></i></button>
+                            <button class="btn-cantidad" onclick="cambiarCant(3, -1)">-</button>
+                            <input type="number" id="cant-3" value="0" readonly class="input-cantidad">
+                            <button class="btn-cantidad" onclick="cambiarCant(3, 1)">+</button>
                         </div>
                     </div>
                 </div>
-                </div>
+
+            </div>
         </section>
 
         <section id="pedido-seccion">
             <div id="factura">
                 <h2>TU PEDIDO</h2>
-                
-                <div id="items-pedido-lista" class="resumen-pedido">
-                    <p style="text-align:center; color: #888;">Aquí aparecerán tus productos...</p>
+                <div id="lista-pedido"></div>
+                <div style="text-align: right; font-weight: bold; font-size: 1.2rem; margin-top: 10px;">
+                    Total: <span id="total-pedido">$0</span>
                 </div>
 
-                <div class="totales">
-                    <p>Subtotal: <span id="subtotal-pedido">$0</span></p>
-                    <p>Total: <span id="total-pedido">$0</span></p>
-                </div>
-
-                <hr style="margin: 30px 0;">
-
-                <h3>Datos de Entrega</h3>
                 <form id="form-cliente">
-                    <label for="nombre">Nombre Completo:</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
-
-                    <label for="direccion">Dirección de Entrega:</label>
-                    <input type="text" id="direccion" name="direccion" placeholder="Calle, Carrera, Edificio, Apartamento..." required>
-
-                    <button type="button" class="btn-gps" onclick="obtenerUbicacion()">
-                        <i class="fas fa-location-arrow"></i> Ubicar mi dirección actual (GPS)
-                    </button>
-                    <p id="coordenadas" style="font-size: 0.8rem; color: #666; margin-top: -10px;"></p>
-
-                    <label for="celular">Celular de Contacto:</label>
-                    <input type="tel" id="celular" name="celular" placeholder="Ej. 300 123 4567" required>
-
-                    <label for="observaciones">Observaciones (Opcional):</label>
-                    <textarea id="observaciones" name="observaciones" rows="4" placeholder="Ej. Tocar el timbre del apto 301, dejar en portería..."></textarea>
+                    <input type="text" id="nombre" placeholder="Nombre completo" required>
+                    <input type="text" id="direccion" placeholder="Dirección de entrega" required>
+                    <button type="button" class="btn-gps" onclick="obtenerGps()">Ubicar con GPS</button>
+                    <input type="tel" id="celular" placeholder="Celular" required>
+                    <textarea id="obs" placeholder="Observaciones"></textarea>
                 </form>
 
-                <div style="text-align: center;">
-                    <a id="btn-whatsapp" class="btn-whatsapp" onclick="prepararPedidoWhatsApp()">
-                        <i class="fab fa-whatsapp"></i> ENVIAR PEDIDO
-                    </a>
-                </div>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp()">ENVIAR PEDIDO</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <h4>DATOS DE CONTACTO</h4>
-        <p class="contacto-info">BOGOTA</p>
-        <p class="contacto-info">Whatsapp: 3144778498</p>
-        
-        <p class="derechos">
-            app desarrollada por <strong>Vibras Positivas</strong>. Derechos de autor reservados © <span id="year"></span>
+        <p>COFRAPAN - BOGOTA</p>
+        <p>WhatsApp: 3144778498</p>
+        <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.8;">
+            App desarrollada por <strong>Vibras Positivas</strong>. Derechos de autor reservados © 2026
         </p>
     </footer>
 
     <script>
-        // Actualizar el año en los derechos de autor
-        document.getElementById('year').textContent = new Date().getFullYear();
+        let carrito = {};
+        let gpsUrl = "";
 
-        // Estructura de datos para el carrito (pedido)
-        let pedido = {
-            items: {}, // key: idProducto, value: cantidad
-            total: 0,
-            coordenadas: "" // Para almacenar lat,long
-        };
+        function cambiarCant(id, delta) {
+            const input = document.getElementById(`cant-${id}`);
+            let n = parseInt(input.value) + delta;
+            if (n < 0) n = 0;
+            input.value = n;
 
-        // Función para aumentar/disminuir cantidad
-        function ajustarCantidad(idProducto, cambio) {
-            const inputCantidad = document.getElementById(`cantidad-${idProducto}`);
-            let nuevaCantidad = parseInt(inputCantidad.value) + cambio;
-            
-            if (nuevaCantidad < 0) nuevaCantidad = 0;
-            
-            inputCantidad.value = nuevaCantidad;
-            actualizarItemPedido(idProducto, nuevaCantidad);
-        }
+            const card = document.querySelector(`.producto-card[data-id="${id}"]`);
+            const nombre = card.querySelector('h3').innerText;
+            const precio = parseInt(card.dataset.precio);
 
-        // Función para cuando el usuario edita el input manualmente
-        function actualizarCantidadInput(idProducto) {
-            const inputCantidad = document.getElementById(`cantidad-${idProducto}`);
-            let cantidad = parseInt(inputCantidad.value);
-            
-            if (isNaN(cantidad) || cantidad < 0) {
-                cantidad = 0;
-                inputCantidad.value = cantidad;
-            }
-            actualizarItemPedido(idProducto, cantidad);
-        }
-
-        // Lógica central para actualizar el estado del pedido
-        function actualizarItemPedido(idProducto, cantidad) {
-            const productoCard = document.querySelector(`.producto-card[data-id="${idProducto}"]`);
-            const precio = parseInt(productoCard.dataset.precio);
-            const nombre = productoCard.querySelector('h3').textContent;
-
-            if (cantidad === 0) {
-                delete pedido.items[idProducto];
+            if (n > 0) {
+                carrito[id] = { nombre, precio, cant: n };
             } else {
-                pedido.items[idProducto] = {
-                    nombre: nombre,
-                    cantidad: cantidad,
-                    precioUnitario: precio,
-                    subtotal: cantidad * precio
-                };
+                delete carrito[id];
             }
-            actualizarVisualizacionPedido();
+            actualizarResumen();
         }
 
-        // Formatear precios a pesos colombianos
-        function formatearMoneda(valor) {
-            return '$' + valor.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        function actualizarResumen() {
+            const lista = document.getElementById('lista-pedido');
+            const totalSpan = document.getElementById('total-pedido');
+            lista.innerHTML = "";
+            let total = 0;
+
+            Object.values(carrito).forEach(item => {
+                let sub = item.precio * item.cant;
+                total += sub;
+                lista.innerHTML += `<div>${item.nombre} x${item.cant} = $${sub.toLocaleString()}</div>`;
+            });
+            totalSpan.innerText = "$" + total.toLocaleString();
         }
 
-        // Actualizar la sección de "Factura"
-        function actualizarVisualizacionPedido() {
-            const listaItems = document.getElementById('items-pedido-lista');
-            const subtotalEl = document.getElementById('subtotal-pedido');
-            const totalEl = document.getElementById('total-pedido');
-            
-            listaItems.innerHTML = "";
-            let subtotalTotal = 0;
-
-            if (Object.keys(pedido.items).length === 0) {
-                listaItems.innerHTML = '<p style="text-align:center; color: #888;">Aquí aparecerán tus productos...</p>';
-                subtotalEl.textContent = "$0";
-                totalEl.textContent = "$0";
-                return;
-            }
-
-            // Generar la lista de items en la factura
-            for (const id in pedido.items) {
-                const item = pedido.items[id];
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'item-pedido';
-                itemDiv.innerHTML = `
-                    <span>${item.nombre} x ${item.cantidad}</span>
-                    <span>${formatearMoneda(item.subtotal)}</span>
-                `;
-                listaItems.appendChild(itemDiv);
-                subtotalTotal += item.subtotal;
-            }
-
-            subtotalEl.textContent = formatearMoneda(subtotalTotal);
-            totalEl.textContent = formatearMoneda(subtotalTotal);
-            pedido.total = subtotalTotal; // Actualizar el total en la estructura de datos
-        }
-
-        // Función GPS (Geolocalización)
-        function obtenerUbicacion() {
-            const btnGps = document.querySelector('.btn-gps');
-            const coordenadasEl = document.getElementById('coordenadas');
-            
+        function obtenerGps() {
             if (navigator.geolocation) {
-                coordenadasEl.textContent = "Obteniendo ubicación...";
-                navigator.geolocation.getCurrentPosition(
-                    // Éxito
-                    (position) => {
-                        const lat = position.coords.latitude;
-                        const lon = position.coords.longitude;
-                        pedido.coordenadas = `${lat},${lon}`;
-                        coordenadasEl.textContent = `Ubicación obtenida: (${lat.toFixed(6)}, ${lon.toFixed(6)})`;
-                        coordenadasEl.style.color = "#3cb02a";
-                    },
-                    // Error
-                    (error) => {
-                        switch(error.code) {
-                            case error.PERMISSION_DENIED:
-                                coordenadasEl.textContent = "Permiso de ubicación denegado.";
-                                break;
-                            case error.POSITION_UNAVAILABLE:
-                                coordenadasEl.textContent = "Ubicación no disponible.";
-                                break;
-                            default:
-                                coordenadasEl.textContent = "Error al obtener ubicación.";
-                                break;
-                        }
-                        coordenadasEl.style.color = "red";
-                    }
-                );
-            } else {
-                coordenadasEl.textContent = "La geolocalización no es compatible con este navegador.";
-                coordenadasEl.style.color = "red";
+                navigator.geolocation.getCurrentPosition(p => {
+                    gpsUrl = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
+                    alert("Ubicación capturada!");
+                });
             }
         }
 
-        // Preparar y enviar el mensaje de WhatsApp estilo "pedido"
-        function prepararPedidoWhatsApp() {
-            // 1. Validar el pedido
-            if (Object.keys(pedido.items).length === 0) {
-                alert("Por favor, selecciona al menos un producto.");
+        function enviarWhatsApp() {
+            const n = document.getElementById('nombre').value;
+            const d = document.getElementById('direccion').value;
+            const c = document.getElementById('celular').value;
+            const o = document.getElementById('obs').value;
+
+            if (!n || !d || !c || Object.keys(carrito).length === 0) {
+                alert("Completa los datos y selecciona productos.");
                 return;
             }
 
-            // 2. Validar el formulario
-            const formCliente = document.getElementById('form-cliente');
-            if (!formCliente.checkValidity()) {
-                alert("Por favor, completa todos los campos de tus datos de entrega.");
-                return;
-            }
+            let texto = `*PEDIDO COFRAPAN*\n\n`;
+            texto += `*Cliente:* ${n}\n*Dirección:* ${d}\n*Celular:* ${c}\n`;
+            if(gpsUrl) texto += `*GPS:* ${gpsUrl}\n`;
+            if(o) texto += `*Obs:* ${o}\n\n`;
+            texto += `*PRODUCTOS:*\n`;
 
-            // 3. Recoger datos del cliente
-            const nombre = document.getElementById('nombre').value;
-            const direccion = document.getElementById('direccion').value;
-            const celular = document.getElementById('celular').value;
-            const observaciones = document.getElementById('observaciones').value;
-            const suscripcion = document.getElementById('suscripcion').value;
+            let t = 0;
+            Object.values(carrito).forEach(item => {
+                let sub = item.precio * item.cant;
+                t += sub;
+                texto += `- ${item.nombre} x${item.cant}: $${sub.toLocaleString()}\n`;
+            });
 
-            // 4. Formatear el mensaje de pedido
-            let mensaje = `*PEDIDO PARA COFRAPAN*\n`;
-            mensaje += `--------------------------\n`;
-            mensaje += `*CLIENTE:*\n`;
-            mensaje += `👤 ${nombre}\n`;
-            mensaje += `📍 ${direccion}\n`;
-            if (pedido.coordenadas) {
-                mensaje += `🌐 (GPS: https://www.google.com/maps/search/?api=1&query=${pedido.coordenadas})\n`;
-            }
-            mensaje += `📞 ${celular}\n`;
-            if (observaciones) {
-                mensaje += `📝 Obs: ${observaciones}\n`;
-            }
-            if (suscripcion === "true") {
-                mensaje += `✓ Cliente suscrito.\n`;
-            }
-            mensaje += `--------------------------\n`;
-            mensaje += `*ITEMS:*\n`;
+            texto += `\n*TOTAL: $${t.toLocaleString()}*\n\n`;
+            texto += `_App desarrollada por Vibras Positivas_`;
 
-            // Agregar items
-            for (const id in pedido.items) {
-                const item = pedido.items[id];
-                mensaje += `- ${item.nombre} (x${item.cantidad})\n`;
-                mensaje += `  S.Total: ${formatearMoneda(item.subtotal)}\n`;
-            }
-
-            mensaje += `--------------------------\n`;
-            mensaje += `*TOTAL DEL PEDIDO:*\n`;
-            mensaje += `💰 *${formatearMoneda(pedido.total)}*\n`;
-            mensaje += `--------------------------\n`;
-            mensaje += `BOGOTA`;
-
-            // 5. Codificar el mensaje y enviar a WhatsApp
-            const mensajeCodificado = encodeURIComponent(mensaje);
-            const numeroWhatsApp = "573144778498"; // Número destino
-            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
+            window.open(`https://wa.me/573144778498?text=${encodeURIComponent(texto)}`);
         }
-
     </script>
 </body>
 </html>
